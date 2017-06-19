@@ -6,11 +6,14 @@ const app = express();
 
 //Loading lorem ipsum to call text 
 
-var loremIpsum = require('lorem-ipsum'), output = loremIpsum({count: 3, units:'paragraph', format:'html'});
+var loremIpsum = require('lorem-ipsum');
 
-//the client is calling the lorem ipsum plug dependency
-app.get('/lorem', function (req, res) {
-  res.send(output);
+//output = loremIpsum({count:req.params.number, units:'paragraph', format:'html'});
+
+//asking for a number back from input for number of paragraphs (parameters) 
+
+app.get('/lorem/:number', function(req, res) {
+  res.send(loremIpsum({count:req.params.number, units:'paragraph', format:'html'}));
 });
 
 
